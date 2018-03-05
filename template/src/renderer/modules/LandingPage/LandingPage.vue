@@ -4,14 +4,18 @@
     <main>
       <div class="left-side">
         <span class="title">
+          {{#isEnabled plugins 'vuex'}}
+          \{{this.$store.state.LandingPage.message}}
+          {{else}}
           Welcome to your new project!
+          {{/isEnabled}}
         </span>
         <system-information></system-information>
       </div>
 
       <div class="right-side">
         <div class="doc">
-          <div class="title">Getting Started</div>
+          <div class="title">\{{concatenate('Getting ','Started')}}</div>
           <p>
             electron-vue comes packed with detailed documentation that covers everything from
             internal configurations, using the project structure, building your application,

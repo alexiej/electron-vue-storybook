@@ -5,6 +5,9 @@ module.exports = {
     sourceType: 'module'
   },
   env: {
+    {{#testing unit e2e}}
+    mocha: true,
+    {{/testing}}
     browser: true,
     node: true
   },
@@ -15,6 +18,11 @@ module.exports = {
   extends: 'airbnb-base',
   {{/if_eq}}
   globals: {
+    {{#testing unit e2e}}
+    assert: true,
+    expect: true,
+    should: true,
+    {{/testing}}
     __static: true
   },
   plugins: [

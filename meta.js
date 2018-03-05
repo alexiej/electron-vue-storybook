@@ -91,7 +91,18 @@ module.exports = {
           short: 'none'
         }
       ]
+    },    
+    storybook: {
+      type: 'confirm',
+      message: 'Setup Storybook for Vue (https://storybook.js.org/)?',
+      required: true
     },
+    ui: {
+      type: 'checkbox',
+      message: 'Setup front-end framework?',
+      choices: ['animate.css', 'bootstrap', 'element-ui' ,'font-awesome'],
+      default: ['bootstrap','font-awesome']
+    },    
     unit: {
       type: 'confirm',
       message: 'Setup unit testing with Karma + Mocha?',
@@ -124,14 +135,19 @@ module.exports = {
       if (list[check]) return opts.fn(this)
       else return opts.inverse(this)
     },
-    deps (plugins) {
+    deps (plugins,ui) {
       let output = ''
       let dependencies = {
         'axios': '^0.16.1',
         'vue-electron': '^1.0.6',
         'vue-router': '^2.5.3',
-        'vuex': '^2.3.1'
+        'vuex': '^2.3.1',
+        "animate.css": "^3.6.1",
+        "bootstrap": "^4.0.0",
+        "element-ui": "^2.2.1",
+        "font-awesome": "^4.7.0"
       }
+      Object.assign(plugins,ui)
 
       if (Object.keys(plugins).length > 0) output += ',\n'
 
@@ -149,12 +165,24 @@ module.exports = {
     }
   },
   filters: {
-    'src/renderer/routes.js': 'plugins[\'vue-router\']',
-    'src/renderer/components/LandingPageView/CurrentPage.vue': 'plugins[\'vue-router\']',
-    'src/renderer/router/**/*': 'plugins[\'vue-router\']',
     'src/renderer/store/**/*': 'plugins[\'vuex\']',
-    'test/e2e/**/*': 'e2e',
+    'src/renderer/**/*.store.js': 'plugins[\'vuex\']',
+    'src/renderer/store.js': 'plugins[\'vuex\']',
+
+    'src/renderer/components/LandingPageView/CurrentPage.vue': 'plugins[\'vue-router\']',
+    'src/renderer/routes.js': 'plugins[\'vue-router\']',
+    'src/renderer/**/*.routes.js': 'plugins[\'vue-router\']',
+    'src/renderer/router.js': 'plugins[\'vue-router\']',
+    
+    'src/renderer/**/*.stories.js': 'storybook',
+    '.storybook/**/*': 'storybook',
+    'src/adds/stories-example/**/*': 'storybook',
+
+    'src/renderer/**/*.spec.js': 'unit',
     'test/unit/**/*': 'unit',
+
+    'test/e2e/**/*': 'e2e',
+
     '.electron-vue/build.config.js': 'builder === \'packager\'',
     'test/.eslintrc': 'e2e || unit',
     '.eslintignore': 'eslint',

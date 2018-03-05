@@ -4,6 +4,7 @@ import axios from 'axios'
 {{/isEnabled}}
 
 import App from './App'
+import './mixin'
 {{#isEnabled plugins 'vue-router'}}
 import router from './router'
 {{/isEnabled}}
