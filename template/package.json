@@ -110,6 +110,7 @@
     "chalk": "^2.1.0",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.5",
+    "node-sass": "^4.7.2",
     "css-loader": "^0.28.4",
     "sass-loader": "^6.0.6",    
     "del": "^3.0.0",
