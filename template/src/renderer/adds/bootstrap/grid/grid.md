@@ -1,4 +1,4 @@
-# Example of the columns
+# Example of the  grid
 
 ```html
 <div class="container p-4">
@@ -23,4 +23,5 @@
     </div>
   </div>
 </div>
+
 ```

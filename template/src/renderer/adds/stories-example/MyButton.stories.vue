@@ -1,6 +1,6 @@
 <template>
   <button class="button-styles color--red-1 button--40x40" @click="onClick">
-    <b>{{ messages }} </b>
+    <b> </b>
     Example class of the control
     <slot/>
   </button>
@@ -9,13 +9,13 @@
 <script>
 export default {
   name: 'my-button',
-  data() {
+  data () {
     return {
       messages: ['Cat']
     }
   },
   methods: {
-    onClick() {
+    onClick () {
       this.$emit('click')
       console.log('button clicked')
     }
@@ -24,6 +24,8 @@ export default {
 </script>
 
 <style>
+
+
 .button-styles {
   border: 1px solid #eee;
   border-radius: 3px;
@@ -32,10 +34,7 @@ export default {
   font-size: 15pt;
   padding: 3px 10px;
   margin: 10px;
-}
-
-.mystyle2 {
-  color: red;
-  width: 10px;
+  background: brown;
+  color: #fff;
 }
 </style>

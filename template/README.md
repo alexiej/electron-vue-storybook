@@ -25,6 +25,13 @@ npm test
 npm run lint
 
 {{/if}}
+
+{{#if storybook}}
+# Run storybook
+npm run storybook
+
+{{/if}}
+
 ```
 
 ---

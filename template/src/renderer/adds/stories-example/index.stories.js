@@ -1,8 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
 import Vue from 'vue'
-// Examples: https://storybooks-vue.netlify.com/?knob-Name=John%20Doe&knob-Age=44&selectedKind=Addon%7CKnobs&selectedStory=Simple&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybook%2Fstories%2Fstories-panel
 
-// https://github.com/storybooks/storybook/issues/2695
 import { storiesOf } from '@storybook/vue'
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs/vue'
 import { withNotes } from '@storybook/addon-notes'
@@ -11,22 +8,20 @@ import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 import { specs, describe, it } from 'storybook-addon-specifications'
 
-{{#testing unit e2e}}
 import {expect} from 'chai'
-{{/testing}}
 
 import MyButton from './MyButton.stories.vue'
 import MyButtonMD from './MyButton.md'
 import Welcome from './Welcome.stories.vue'
 
 storiesOf('Welcome', module)
-  .add('to Storybook',  () => ({
+  .add('to Storybook', () => ({
     components: { Welcome },
     template: '<welcome :showApp="action" />',
     methods: { action: linkTo('Button') }
   }))
 
-const stories = storiesOf('Examples', module)
+const stories = storiesOf('Welcome/Examples', module)
 stories.addDecorator(withKnobs)
 
 stories
@@ -48,7 +43,7 @@ stories
     components: { MyButton },
     template: '<my-button > <b>Moj item a </b>Item </my-button>'
   })))
-  .add('Knobs example', function() {
+  .add('Knobs example', function () {
     const groupId = 'GROUP-ID1'
     const groupId2 = 'GROUP-ID2'
     const name = text('Name', 'Arunoda Susiripala', groupId)
@@ -75,8 +70,7 @@ stories
     }
   }))
 
-{{#testing unit e2e}}
-stories.add('Test example', function() {
+stories.add('Test example', function () {
   let story = {
     components: { MyButton },
     template: '<my-button class=\'border\'  @click.native.stop="log"  > Example with click </my-button>',
@@ -85,15 +79,14 @@ stories.add('Test example', function() {
     }
   }
 
-  specs(() => describe('Hello World', function() {
+  specs(() => describe('Hello World', function () {
     let Cmp = Vue.extend(MyButton)
     let vm = (new Cmp()).$mount()
 
     it('equals messages to ["Cat"]', () => {
-      expect(vm.messages).to.eql (['Cat']) 
+      expect(vm.messages).to.eql(['Cat'])
     })
   }))
 
   return story
 })
-{{/testing}}

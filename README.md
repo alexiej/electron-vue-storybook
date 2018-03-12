@@ -1,6 +1,6 @@
 <div align="center">
 <br>
-<img width="500" src="/docs/images/logo.png" alt="electron-vue">
+<img width="500" src="./docs/images/logo.png" alt="electron-vue">
 <br>
 <br>
 </div>
@@ -22,6 +22,286 @@ The boilerplate for making electron applications built with vue (pretty much wha
 </div>
 
 ## Overview
+
+### This is a fork of the original electron-vue project with some extrea features like:
+
+* **Storybook** that allows you to preview your components classes, behaviour and much more [more](https://storybook.js.org/)
+
+<img width="800" src="./docs/images-evs/storybook.gif" alt="storybook">
+
+* **Bootstrap 4.0** with the preview in storybook for most of the futures to preview like buttons, layouts, etc... [more](https://getbootstrap.com/)
+
+<img width="800" src="./docs/images-evs/bootstrap.gif" alt="bootstrap">
+
+* **Element-UI** wich is great framework for desktop applications, and also with a lot of examples from the original page [more](https://storybook.js.org/)
+
+<img width="800" src="./docs/images-evs/element-ui.gif" alt="element-ui">
+
+
+* **Animated.css** with a lot of styles to animate your buttons, text, etc.. [more](https://daneden.github.io/animate.css/)
+
+<img width="800" src="./docs/images-evs/animated-css.gif" alt="animated.css">
+
+* **Font-Awesome** - A huge list of free icons.
+
+<img width="800" src="./docs/images-evs/font-awesome.gif" alt="font-awesome">
+
+* **Modular structure** - This is comes from the Atomic Design with ability to create components or other functions like modules meaning one folder is one module and have everything (including tests, storybooks, documentation) in one folder by suffixes. All files can be included in the project by suffixes. 
+
+## Getting Started
+
+This boilerplate was built as a template for [vue-cli](https://github.com/vuejs/vue-cli) and includes options to customize your final scaffolded app. The use of `node@^7` or higher required. electron-vue also officially recommends the [`yarn`](https://yarnpkg.org) package manager as it handles dependencies much better and can help reduce final build size with `yarn clean`.
+
+```bash
+# Install vue-cli and scaffold boilerplate
+npm install -g vue-cli
+vue init alexiej/electron-vue-storybook my-project
+
+# Install dependencies and run your app
+cd my-project
+yarn # or npm install
+yarn run dev # or npm run dev
+yarn run storybook # or npm run storybook
+```
+
+## Folder Structure
+
+* **.electron-vue** - Builder for electron desktop project
+* **.storybook** - Folder to initialize storybook.
+* **src** - Main Folder for sources
+  * **main** - Main electron js file to create BrowserWindw
+  * **renderer** - Main folder for rendering files
+    * **adds** - Additional modules with stories or tests like bootstrap/element-ui,font-awesome or animated.css
+    * **assets** - Files like additional images, fonts, etc...
+    * **components** - List of basic components like buttons, lists, etc...
+    * **css** - Style files with _global.scss to load all styles for application
+    * **methods** - helpful methods for the application
+    * **modules** - List of modules for the application like Content. Each module can have couple types of files depends on suffix.
+    * **App.vue** - main view for BrowserWindow
+    * **components.js** - Get all components with the .comp.vue suffix and install them to be available in your application.
+    * **main.js** - main .js file to run
+    * **mixin.js** - Get all mixins from folder **renderer** with the .mixin.js suffix.
+    * **router.js** - Get all routes from the folder **renderer** with the suffix .routes.js.
+    * **store.js** - Get all stores from the folder **renderer** with the suffix .store.js.
+* **tests** - Test folder that includes all files with the .spec.js suffix.
+
+## File suffixes
+
+| Suffix        | Example           | Description  |
+| ------------- |:-------------:| -----|
+| .stories.js     | button.stories.js | Information about stories for storybook  |
+| .comp.vue | button-example.comp.vue      | Global atomic component for your project |
+| .routes.js     | LandingPage.routes.js      |   Information  about routes for router |
+| .mixin.js | LandingPage.mixin.js     | Additional mixin for your project |
+| .store.js | LandingPage.store.js      |  Vuex store for your project |
+| .spec.js | LandingPage.spec.js      |  Unit test for your project|
+
+### **.stories.js**
+
+All files with the **.stories.js** are included in the storybook automaticly without putting the information in the main folder.
+
+#### indes.stories.js
+
+```js
+import Vue from 'vue'
+import { storiesOf } from '@storybook/vue'
+import MyButton from './MyButton.stories.vue'
+
+const stories = storiesOf('Welcome/Examples', module)
+stories.addDecorator(withKnobs)
+
+stories
+  .add('with text', () => ({
+    components: { MyButton },
+    template: '<div class="cd-border" @click="action">Hello Button </div>',
+    methods: { action: action('clicked') }
+  }))
+```
+
+#### mybutton.stories.vue
+
+You can put **.stories.vue** as a suffix to exclude them from code cover test.
+
+```html
+<template>
+  <button class="button-styles color--red-1 button--40x40" @click="onClick">
+    <b> </b>
+    Example class of the control
+    <slot/>
+  </button>
+</template>
+
+<script>
+export default {
+  name: 'my-button',
+  data () {
+    return {
+      messages: ['Cat']
+    }
+  },
+  methods: {
+    onClick () {
+      this.$emit('click')
+      console.log('button clicked')
+    }
+  }
+}
+</script>
+
+<style>
+.button-styles {
+  border: 1px solid #eee;
+  border-radius: 3px;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: 15pt;
+  padding: 3px 10px;
+  margin: 10px;
+  background: brown;
+  color: #fff;
+}
+</style>
+```
+
+<img width="800" src="./docs/images-evs/storybook-example.gif" alt="storybook">
+
+### **.comp.vue**
+
+#### ButtonExample.comp.vue
+
+```html
+<template>
+    <button class="button-styles" >
+        <slot/>
+  </button>
+</template>
+<script>
+export default {
+}
+</script>
+
+<style lang="scss" scoped>
+.button-styles {
+  border: 1px solid #eee;
+  border-radius: 3px;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: 15pt;
+  padding: 3px 10px;
+  margin: 10px;
+  background: brown;
+  color: #fff;
+}
+</style>
+```
+
+Use example:
+
+```html
+<button-example >Example Text</button-example>
+```
+<img  src="./docs/images-evs/button-example.png" alt="button-example">
+
+
+### **.routes.js**
+
+#### LandingPage.routes.js
+
+```js
+export default [{
+  path: '/',
+  name: 'LandingPage',
+  component: require('@/modules/LandingPage/LandingPage').default
+}]
+```
+
+### LandingPageInfo.routes.js
+
+You can specify path of children elements by adding parent to them.
+
+```js
+export default [{
+  parent: '/',
+  path: '/info',
+  name: 'Info',
+  component: require('@/modules/LandingPage/Info').default
+}]
+```
+
+### **.mixin.js**
+
+#### LandingPage.mixin.js
+
+```js
+export default {
+  methods: {
+    mixinExample () {
+      return 'This method is available everywhere in your project'
+    }
+  }
+}
+```
+
+### **.store.js**
+
+#### LandingPage.store.js
+
+```js
+export default {
+  namespaced: true,
+  state: {
+    message: 'Welcome to your new project! (store version)'
+  },
+  mutations: {
+
+  },
+  actions: {
+
+  }
+}
+```
+
+### **.spec.js**
+
+#### LandingPage.spec.js
+
+```js
+import Vue from 'vue'
+import LandingPage from './LandingPage'
+import router from '../../router'
+
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+const storeText = 'Title test'
+const store = new Vuex.Store({
+  modules: {
+    'LandingPage': {
+      state: {
+        namespaced: true,
+        message: storeText
+      }
+    }
+  }
+})
+
+describe('LandingPage.vue', () => {
+  it('should render correct contents', () => {
+    const vm = new Vue({
+      el: document.createElement('div'),
+      render: h => h(LandingPage),
+      store: store,
+      router
+    }).$mount()
+
+    expect(vm.$el.querySelector('.title').textContent).to.contain(storeText)
+  })
+})
+
+```
+
+
+## Other things comes originally from the Electron-Vue
 
 The aim of this project is to remove the need of manually setting up electron apps using vue. electron-vue takes advantage of `vue-cli` for scaffolding, `webpack` with `vue-loader`, `electron-packager` or `electron-builder`, and some of the most used plugins like `vue-router`, `vuex`, and so much more.
 
@@ -49,21 +329,6 @@ Things you'll find in this boilerplate...
 
 \*Customizable during vue-cli scaffolding
 
-### Getting Started
-
-This boilerplate was built as a template for [vue-cli](https://github.com/vuejs/vue-cli) and includes options to customize your final scaffolded app. The use of `node@^7` or higher required. electron-vue also officially recommends the [`yarn`](https://yarnpkg.org) package manager as it handles dependencies much better and can help reduce final build size with `yarn clean`.
-
-```bash
-# Install vue-cli and scaffold boilerplate
-npm install -g vue-cli
-vue init simulatedgreg/electron-vue my-project
-
-# Install dependencies and run your app
-cd my-project
-yarn # or npm install
-yarn run dev # or npm run dev
-```
-
 ##### Are you a Windows User?
 
 Make sure to check out [**A Note for Windows Users**](https://simulatedgreg.gitbooks.io/electron-vue/content/en/getting_started.html#a-note-for-windows-users) to make sure you have all the necessary build tools needed for electron and other dependencies.
@@ -79,7 +344,6 @@ vue init simulatedgreg/electron-vue#1.0 my-project
 ### Next Steps
 
 Make sure to take a look at the [documentation](https://simulatedgreg.gitbooks.io/electron-vue/content/). Here you will find useful information about configuration, project structure, and building your app. There's also a handy [FAQs](https://simulatedgreg.gitbooks.io/electron-vue/content/en/faqs.html) section.
-
 
 ## Made with electron-vue
 Take a look at some of the amazing projects built with electron-vue. Want to have your own project listed? Feel free add your project to the bottom of the list below then submit a pull request.

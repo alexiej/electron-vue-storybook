@@ -7,7 +7,7 @@
     <p>
       We've added some basic stories inside the
       <br />
-      <code class="code">src/stories</code>
+      <code class="code">src/renderer/adds/stories-example/</code>
       <br /> directory.
       <br /> A story is a single state of one or more UI components. You can have as many stories as you want.
       <br /> (Basically a story is like a visual test case.)
@@ -61,7 +61,7 @@ export default {
   },
 
   methods: {
-    onClick(event) {
+    onClick (event) {
       event.preventDefault()
       this.showApp()
     }
