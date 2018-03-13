@@ -102,7 +102,7 @@ function loadStories() {
     r.keys().forEach(key => cache[key] = r(key));
   }
 
-  importAll(require.context('../src/renderer/', true, /\.stories\.js$/));
+  importAll(require.context('../src/', true, /\.stories\.js$/));
 }
 
 configure(loadStories,  module);

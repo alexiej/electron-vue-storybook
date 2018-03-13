@@ -19,8 +19,8 @@ export default {
     animations() {
       return animations.filter(
         i =>
-          this.search == undefined ||
-          this.search == '' ||
+          this.search === undefined ||
+          this.search === '' ||
           i.indexOf(this.search) >= 0
       )
     }
