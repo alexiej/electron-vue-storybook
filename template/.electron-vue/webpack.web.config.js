@@ -59,14 +59,14 @@ let webConfig = {
                 options: {
                   indentedSyntax: 1,
                   includePaths: ['./src/renderer/css'],
-                  data: '@import "./src/renderer/css/.global";',
+                  data: '@import "./src/renderer/css/global";',
                 }
               }],
               scss: ['vue-style-loader', 'css-loader', {
                 loader: 'sass-loader',
                 options: {
                   includePaths: ['./src/renderer/css'],
-                  data: '@import "./src/renderer/css/.global";',
+                  data: '@import "./src/renderer/css/global";',
                 }
               }]
             }

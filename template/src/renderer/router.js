@@ -7,7 +7,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 
-const files = require.context('./', true, /\.routes\.js$/)
+const files = require.context('../', true, /\.routes\.js$/)
 const routesValues = {}
 const routes = []
 

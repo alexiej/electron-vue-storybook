@@ -6,7 +6,7 @@ import Vue from 'vue'
  * in a one-shot manner. There should not be any reason to edit this file.
  */
 
-const files = require.context('.', true, /\.store\.js$/)
+const files = require.context('../', true, /\.store\.js$/)
 const modules = {}
 
 files.keys().forEach(key => {

@@ -1,4 +1,0 @@
-/* CSS  This is global .CSS file*/
-{{#isEnabled ui 'bootstrap'}}@import "~bootstrap/dist/css/bootstrap.min.css";{{/isEnabled}}
-{{#isEnabled ui 'font-awesome'}}@import "~font-awesome/css/font-awesome.css";{{/isEnabled}}
-{{#isEnabled ui 'animate.css'}}@import "~animate.css/animate.min.css"; {{/isEnabled}}

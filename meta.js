@@ -165,6 +165,18 @@ module.exports = {
     }
   },
   filters: {
+    'src/adds/bootstrap/**/*': 'ui[\'bootstrap\']',
+    'src/adds/animate.css/**/*': 'ui[\'animate.css\']',
+    'src/adds/element-ui/**/*': 'ui[\'element-ui\']',
+    'src/adds/font-awesome/**/*': 'ui[\'font-awesome\']',
+
+    'src/adds/bootstrap/stories/**/*': 'storybook',
+    'src/adds/animate.css/stories/**/*': 'storybook',
+    'src/adds/element-ui/stories/**/*': 'storybook',
+    'src/adds/font-awesome/stories/**/*': 'storybook',
+    'src/adds/stories-example/**/*': 'storybook', 
+    '.storybook/**/*': 'storybook',
+
     'src/renderer/store/**/*': 'plugins[\'vuex\']',
     'src/renderer/**/*.store.js': 'plugins[\'vuex\']',
     'src/renderer/store.js': 'plugins[\'vuex\']',
@@ -174,10 +186,6 @@ module.exports = {
     'src/renderer/**/*.routes.js': 'plugins[\'vue-router\']',
     'src/renderer/router.js': 'plugins[\'vue-router\']',
     
-    'src/renderer/**/*.stories.js': 'storybook',
-    '.storybook/**/*': 'storybook',
-    'src/adds/stories-example/**/*': 'storybook',
-
     'src/renderer/**/*.spec.js': 'unit',
     'test/unit/**/*': 'unit',
 

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-const files = require.context('./', true, /\.comp\.vue$/)
+const files = require.context('../', true, /\.comp\.vue$/)
 
 for (let key of files.keys()) {
   let path = key

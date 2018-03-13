@@ -38,13 +38,13 @@ module.exports = (baseConfig, env) => {
               loader: 'sass-loader',
               options: {
                 indentedSyntax: 1,
-                data: '@import "./src/renderer/css/.global";',
+                data: '@import "./src/renderer/css/global";',
               }
             }],
             scss: ['vue-style-loader', 'css-loader', {
               loader: 'sass-loader',
               options: {
-                data: '@import "./src/renderer/css/.global";',
+                data: '@import "./src/renderer/css/global";',
               }
             }]
           }
@@ -58,7 +58,7 @@ module.exports = (baseConfig, env) => {
       use: ['style-loader','css-loader', {
         loader: 'sass-loader',
         options: {
-          data: '@import "./src/renderer/css/.global";',
+          data: '@import "./src/renderer/css/global";',
         }
       }]
     }
